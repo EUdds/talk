@@ -1,16 +1,25 @@
 const express = require('express');
 const path = require('path');
-const http = require('http');
+const http = require('https');
+const fs = require('fs');
+const cors = require('cors');
 const app = express();
-const server = http.createServer(app);
-const io = require('socket.io').listen(server);
+const server = http.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/sandbox.ericudlis.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/sandbox.ericudlis.com/fullchain.pem')
+}, app);
+const io = require('socket.io');
+
+app.use(cors());
+const IO_SERVER = io.listen(server);
 
 // Server all the static files from www folder
 app.use(express.static(path.join(__dirname, 'www')));
+app.use(express.static(__dirname, {dotfiles: 'allow'}));
 
 // Get PORT from env variable else assign 3000 for development
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, null, function() {
+const PORT = process.env.PORT || 443;
+server.listen(PORT, null , function() {
 	console.log('Listening on port ' + PORT);
 });
 
@@ -22,7 +31,7 @@ app.get(['/', '/:room'], (req, res) => res.sendFile(path.join(__dirname, 'www/in
 const channels = {};
 const sockets = {};
 
-io.sockets.on('connection', socket => {
+IO_SERVER.on('connection', socket => {
 	const socketHostName = socket.handshake.headers.host.split(':')[0];
 
 	socket.channels = {};

@@ -1,28 +1,29 @@
 {
-	"name": "talk",
-	"version": "1.0.0",
-	"description": "A free video call app for the web.",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/vasanthv/talk.git"
-	},
-	"keywords": [
-		"webrtc",
-		"socket.io",
-		"video"
-	],
-	"author": "Vasanth V",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/vasanthv/talk/issues"
-	},
-	"homepage": "https://github.com/vasanthv/talk#readme",
-	"dependencies": {
-		"express": "^4.17.1",
-		"socket.io": "^2.2.0"
-	}
+  "name": "talk",
+  "version": "1.0.0",
+  "description": "A free video call app for the web.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasanthv/talk.git"
+  },
+  "keywords": [
+    "webrtc",
+    "socket.io",
+    "video"
+  ],
+  "author": "Vasanth V",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasanthv/talk/issues"
+  },
+  "homepage": "https://github.com/vasanthv/talk#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  }
 }

@@ -1,6 +1,5 @@
 const appURL = () => {
-	const protocol = 'http' + (location.hostname == 'localhost' ? '' : 's') + '://';
-	return protocol + location.hostname + (location.hostname == 'localhost' ? ':3000' : '');
+    return location.hostname
 };
 const getRoomName = () => {
 	let roomName = location.pathname.substring(1);

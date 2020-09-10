@@ -13,3 +13,6 @@ npm-debug.log
 
 # cache
 .cache
+
+www/.well-known/
+.env
