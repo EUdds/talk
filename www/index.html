@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="description" content="Talk - A free video call app for the web." />
+	<meta name="description" content="Meet with Eric Udlis!" />
 	<meta name="keywords" content="group video chat, video communication, multiparty video chat, video chat, webrtc, peer to peer, p2p" />
 	<meta name="application-name" content="Talk" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -14,15 +14,21 @@
 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="script.js"></script>
-	<title>Talk - A free video call app for the web</title>
+	<title>Meet - A P2P Video Chat App</title>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 </head>
 
 <body onload="init()">
 	<div id="message">
-		Share the URL of this page with your friends to start talking.<br />
-		<a href="http://github.com/vasanthv/talk" target="_blank">Source code</a> &middot;
-		<a href="/legal" target="_blank">Legal</a>
+		Share the URL of this page with your friends to start talking.
+		<hr />
+		Your room code is <p id="roomCode"></p>
+		<hr />
+		Join a room by entering a code here
+		<div id="join-bar">
+			<input id="joinCode" type="text">
+			<button onClick="joinRoom()" type="button">Join</button>
+		</div>
 	</div>
 	<div id="allowaccess">
 		<div id="logo" style="margin:auto;">

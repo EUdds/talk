@@ -1,13 +1,21 @@
 const express = require('express');
 const path = require('path');
-const http = require('https');
+const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
-const server = http.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/fullchain.pem')
-}, app);
+let server;
+if (process.env.ENV === 'dev') {
+	console.log('[INFO] Creating http server')
+	server = http.createServer(app);
+} else {
+	console.log('[INFO] Creating https server');
+	server = https.createServer({
+		key: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/privkey.pem'),
+		cert: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/fullchain.pem')
+	}, app);
+}
 const io = require('socket.io');
 
 app.use(cors());
@@ -15,11 +23,11 @@ const IO_SERVER = io.listen(server);
 
 // Server all the static files from www folder
 app.use(express.static(path.join(__dirname, 'www')));
-app.use(express.static(__dirname, {dotfiles: 'allow'}));
+app.use(express.static(__dirname, { dotfiles: 'allow' }));
 
 // Get PORT from env variable else assign 3000 for development
 const PORT = process.env.PORT || 443;
-server.listen(PORT, null , function() {
+server.listen(PORT, null, function () {
 	console.log('Listening on port ' + PORT);
 });
 

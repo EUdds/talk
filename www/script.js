@@ -195,7 +195,8 @@ function init() {
 		delete peers[peer_id];
 		delete peerMediaElements[config.peer_id];
 	});
-	// document.getElementById('roomurl').value = appURL() + '/' + getRoomName();
+	document.getElementById('roomCode').innerText = getRoomName();
+
 }
 
 function setup_local_media(callback, errorback) {
@@ -373,3 +374,9 @@ const copyURL = () => {
 		document.getElementById('copybtn').style.color = '#333';
 	}, 3000);
 };
+
+function joinRoom() {
+	let joinCode = document.getElementById('joinCode').value;
+	joinCode = joinCode.toLowerCase();
+	window.location.href = `/${joinCode}`;
+}
