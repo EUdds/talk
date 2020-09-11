@@ -9,7 +9,7 @@ const getRoomName = () => {
 			.toString(36)
 			.substr(2, 6);
 		roomName = randomName();
-		const newurl = appURL() + '/' + roomName;
+		const newurl = '/' + roomName;
 		window.history.pushState({ url: newurl }, roomName, newurl);
 	}
 	return roomName;

@@ -5,8 +5,8 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 const server = http.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/sandbox.ericudlis.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/sandbox.ericudlis.com/fullchain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/meet.ericudlis.com/fullchain.pem')
 }, app);
 const io = require('socket.io');
 
